@@ -87,7 +87,7 @@ class BookInstance(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return f'{self.id} ({self.book.title})'
+        return f'{self.book.title}, Status: {self.status}, Due back: {self.due_back}, ID: {self.id}'
 
 class Author(models.Model):
     """Model representing an author."""
@@ -105,7 +105,10 @@ class Author(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return f'{self.last_name}, {self.first_name}'
+        books_by_author = Book.objects.filter(author=self)
+        book_titles = [book.title for book in books_by_author]
+        book_titles_str = ', '.join(book_titles)
+        return f'{self.last_name}, {self.first_name} - {book_titles_str}'
 
 class Language(models.Model):
     """Model representing a Language (e.g. English, French, Japanese, etc.)"""
