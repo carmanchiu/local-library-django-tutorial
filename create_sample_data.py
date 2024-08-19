@@ -63,7 +63,7 @@ def create_book(n):
         book.language = random.choice(Language.objects.all())
         book.save()
 
-        print(f"{'Created' if created else 'Exists'}": Book - {book.title})
+        print(f"{'Created' if created else 'Exists'}: Book - {book.title}")
 
 # Create book instances
 def create_book_instance(n):
