@@ -108,7 +108,7 @@ class Author(models.Model):
         books_by_author = Book.objects.filter(author=self)
         book_titles = [book.title for book in books_by_author]
         book_titles_str = ', '.join(book_titles)
-        return f'{self.last_name}, {self.first_name} - {book_titles_str}'
+        return f'{self.last_name}, {self.first_name}'
 
 class Language(models.Model):
     """Model representing a Language (e.g. English, French, Japanese, etc.)"""
