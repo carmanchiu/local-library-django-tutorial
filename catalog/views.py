@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
+from django.views import generic
 
 def index(request):
     """View function for home page of site."""
@@ -40,3 +41,16 @@ def books_list(request):
     
     context = {'book_list': book_list}
     return render(request, 'book_list.html', context=context)
+
+class BookListView(generic.ListView):
+    """Class Based View for books"""
+    model = Book
+    context_object_name = 'books'   # your own name for the list as a template variable
+
+    # def get_queryset(self): # can override queryset and get list of books from a certain author instead
+    #     return Book.objects.filter(author=Author.objects.get(last_name="Riordan"))
+
+    def get_context_data(self, **kwargs):
+        context = super(BookListView, self).get_context_data(**kwargs)
+        context["num_books"] = Book.objects.count()
+        return context
