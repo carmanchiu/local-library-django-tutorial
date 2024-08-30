@@ -33,14 +33,14 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
 
-def books_list(request):
-    """Books list (index) using function based view"""
+# def books_list(request):
+#     """Books list (index) using function based view"""
 
-    # Generate book list
-    book_list = Book.objects.all()
+#     # Generate book list
+#     book_list = Book.objects.all()
     
-    context = {'book_list': book_list}
-    return render(request, 'book_list.html', context=context)
+#     context = {'book_list': book_list}
+#     return render(request, 'book_list.html', context=context)
 
 class BookListView(generic.ListView):
     """Class Based View for books"""
@@ -55,10 +55,13 @@ class BookListView(generic.ListView):
         context["num_books"] = Book.objects.count()
         return context
     
-def book_detail(request, pk):
-    """Book details using function based view"""
+# def book_detail(request, pk):
+#     """Book details using function based view"""
 
-    # Generate book details
-    book = Book.objects.get(pk=pk)
-    context = {"book": book}
-    return render(request, "catalog/book_detail.html", context=context)
+#     # Generate book details
+#     book = Book.objects.get(pk=pk)
+#     context = {"book": book}
+#     return render(request, "catalog/book_detail.html", context=context)
+
+class BookDetailView(generic.DetailView):
+    model = Book
