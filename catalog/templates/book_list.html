@@ -9,9 +9,14 @@
     <p>The library has the following {{ num_books}} books available:</p>
     <ul>
         {% for book in books %}
-            <li>
-                <em>{{ book.title }}</em> by {{ book.author }}
-            </li>
+          <li>
+            <em>
+              <a href="{% url 'book-detail' book.pk %}">
+                {{ book.title }}
+              </a>
+            </em> 
+            by {{ book.author }}
+          </li>
         {% endfor %}
-    </ul>
+      </ul>
 {% endblock %}
