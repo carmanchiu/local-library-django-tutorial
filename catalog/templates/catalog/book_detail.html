@@ -17,7 +17,7 @@
       <hr />
       <p
         class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
-        {{ copy.status }}
+        {{ copy.get_status_display }}
       </p>
       {% if copy.status == 'o' %}
         <p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
