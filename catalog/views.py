@@ -46,6 +46,7 @@ class BookListView(generic.ListView):
     """Class Based View for books"""
     model = Book
     context_object_name = 'books'   # your own name for the list as a template variable
+    paginate_by = 10
 
     # def get_queryset(self): # can override queryset and get list of books from a certain author instead
     #     return Book.objects.filter(author=Author.objects.get(last_name="Riordan"))
