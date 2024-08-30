@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <title>Books | Local Library</title>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ book.title }}</h1>
+  <p>by {{ book.author }}</p>
+  <p>Genres: {{ book.genre.all|join:", " }}</p>
+  <p>{{ book.summary }}</p>
+{% endblock %}
