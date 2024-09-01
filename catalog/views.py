@@ -78,3 +78,11 @@ def author_list(request):
                'num_authors': num_authors,
                }
     return render(request, 'author_list.html', context=context)
+
+def author_detail(request, pk):
+    """Author details using function based view"""
+
+    # Generate author details
+    author = Author.objects.get(pk=pk)
+    context = {"author": author}
+    return render(request, "catalog/author_detail.html", context=context)
