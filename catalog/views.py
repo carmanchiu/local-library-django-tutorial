@@ -66,3 +66,15 @@ class BookListView(generic.ListView):
 
 class BookDetailView(generic.DetailView):
     model = Book
+
+def author_list(request):
+    """Author list based on function-based view"""
+
+    # Generate author list
+    author_list = Author.objects.all()
+    num_authors = author_list.count()
+
+    context = {'author_list': author_list,
+               'num_authors': num_authors,
+               }
+    return render(request, 'author_list.html', context=context)
