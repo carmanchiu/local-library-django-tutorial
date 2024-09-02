@@ -67,22 +67,31 @@ class BookListView(generic.ListView):
 class BookDetailView(generic.DetailView):
     model = Book
 
-def author_list(request):
-    """Author list based on function-based view"""
+# def author_list(request):
+#     """Author list based on function-based view"""
 
-    # Generate author list
-    author_list = Author.objects.all()
-    num_authors = author_list.count()
+#     # Generate author list
+#     author_list = Author.objects.all()
+#     num_authors = author_list.count()
 
-    context = {'author_list': author_list,
-               'num_authors': num_authors,
-               }
-    return render(request, 'author_list.html', context=context)
+#     context = {'author_list': author_list,
+#                'num_authors': num_authors,
+#                }
+#     return render(request, 'author_list.html', context=context)
 
-def author_detail(request, pk):
-    """Author details using function based view"""
+class AuthorListView(generic.ListView):
+    """Class based view for authors"""
+    model = Author
+    context_object_name = "authors"
+    paginate_by = 5
 
-    # Generate author details
-    author = Author.objects.get(pk=pk)
-    context = {"author": author}
-    return render(request, "catalog/author_detail.html", context=context)
+# def author_detail(request, pk):
+#     """Author details using function based view"""
+
+#     # Generate author details
+#     author = Author.objects.get(pk=pk)
+#     context = {"author": author}
+#     return render(request, "catalog/author_detail.html", context=context)
+
+class AuthorDetailView(generic.DetailView):
+    model = Author

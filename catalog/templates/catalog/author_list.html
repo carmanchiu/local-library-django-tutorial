@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <title>Authors | Local Library</title>
+{% endblock %}
+
+{% block content %}
+  <h1>Authors</h1>
+  <ul>
+    {% for author in authors %}
+      <li>
+        <em>
+          <a href="{{ author.get_absolute_url }}">
+            {{ author.last_name }}, {{ author.first_name }}
+          </a>
+        </em>
+        ({{ author.date_of_birth }} - {% if author.date_of_death %}{{ author.date_of_death}}{% endif %})
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
