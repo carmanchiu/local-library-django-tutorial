@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
     """View function for home page of site."""
 
