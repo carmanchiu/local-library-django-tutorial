@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
 from django.views import generic
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 @login_required
 def index(request):
@@ -44,7 +45,7 @@ def index(request):
 #     context = {'book_list': book_list}
 #     return render(request, 'book_list.html', context=context)
 
-class BookListView(generic.ListView):
+class BookListView(LoginRequiredMixin, generic.ListView):
     """Class Based View for books"""
     model = Book
     context_object_name = 'books'   # your own name for the list as a template variable
@@ -66,7 +67,7 @@ class BookListView(generic.ListView):
 #     context = {"book": book}
 #     return render(request, "catalog/book_detail.html", context=context)
 
-class BookDetailView(generic.DetailView):
+class BookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Book
 
 # def author_list(request):
@@ -81,7 +82,7 @@ class BookDetailView(generic.DetailView):
 #                }
 #     return render(request, 'author_list.html', context=context)
 
-class AuthorListView(generic.ListView):
+class AuthorListView(LoginRequiredMixin, generic.ListView):
     """Class based view for authors"""
     model = Author
     context_object_name = "authors"
@@ -95,5 +96,5 @@ class AuthorListView(generic.ListView):
 #     context = {"author": author}
 #     return render(request, "catalog/author_detail.html", context=context)
 
-class AuthorDetailView(generic.DetailView):
+class AuthorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Author
