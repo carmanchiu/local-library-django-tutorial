@@ -2,24 +2,9 @@
 
 {% block content %}
   <h2>Add New Book</h2>
-  <!-- NOTE: We could leave the action attribute out because in Django if the form is processed by the same -->
-  <!-- view that renders it, then the submission will, by default, submit back to the same view -->
-  <form action="{% url 'book-create' %}" method="post">
+  <form method="post">
     {% csrf_token %}
-    {% for field in form %}
-        <div>
-            <p>
-                {{ field.label_tag }} <!-- Renders the label element -->
-                {{ field }} <!-- Renders the input element -->
-                {% if field.help_text %}
-                    {{ field.help_text|safe }} <!-- |safe to allow HTML to render -->
-                {% endif %}
-                {% for error in field.errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
-            </p>
-        </div>
-    {% endfor %}
+    {{ form.as_p }}
     <button btn="btn" class="btn btn-primary" type="submit">Save</button>
   </form>
 {% endblock %}
