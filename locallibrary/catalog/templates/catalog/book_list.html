@@ -6,6 +6,7 @@
 
 {% block content %}
     <h1>Books</h1>
+    <p><a href="{% url 'book-create' %}">Add a book</a></p>
     <p>The library has the following {{ num_books}} books available:</p>
     <ul>
         {% for book in books %}
