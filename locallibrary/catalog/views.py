@@ -84,6 +84,25 @@ def book_create(request):
 
     return render(request, "catalog/book_form.html", context=context)
 
+def book_update(request, pk):
+    book = Book.objects.get(pk=pk)
+    if request.method == "POST":
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect("book-detail", pk=book.pk)
+    else:
+        form = BookForm(instance=book)
+
+    context = {"form": form}
+
+    return render(request, "catalog/book_form.html", context=context)
+
+def book_delete(request, pk):
+    book = Book.objects.get(pk=pk)
+    book.delete()
+    return redirect("books")
+
 # def author_list(request):
 #     """Author list based on function-based view"""
 
